@@ -22,3 +22,27 @@ values = votes.values()
 voteTotal = sum(values)
 #output vote total
 
+#print
+print(f"Results")
+print(f"----------------")
+print(f"Total Votes: {voteTotal}")
+print(f"----------------")
+for key, value in votes.items():
+    print(f"{key}: {value / voteTotal:.3%} ({value})")
+print(f"-------------------------")
+print(f"Winner: {max(votes, key=votes.get)}")
+print(f"-------------------------")
+
+#output the same results to a text file
+output_path = os.path.join("..", "analysis", "Election_Results.txt")
+with open(output_path, "w", newline='') as datafile:
+    datafile.write(
+    f"Election_Results\n"
+    f"-------------------------\n"
+    f"Total Votes: {voteTotal}\n"
+    f"-------------------------\n")
+    for key, value in votes.items():
+        datafile.write(f"{key}: {value / voteTotal:.3%} ({value})\n")
+    datafile.write(f"-----------------\n"
+    f"Winner: {max(votes, key=votes.get)}\n"
+    f"--------------")
